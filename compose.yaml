@@ -1,0 +1,39 @@
+version: '3.8'
+
+services:
+  academia-dl:
+    build: .
+    container_name: academia-dl
+    volumes:
+      # Utilise le répertoire absolu depuis le répertoire courant
+      - /volume1/docker/academia-dl/downloads:/downloads:rw
+    working_dir: /downloads
+    environment:
+      - DOWNLOAD_DIR=/downloads
+    restart: "no"
+    # Supprime automatiquement le conteneur après exécution
+    command: ["--help"]
+
+  # Service de débogage
+  academia-dl-debug:
+    build: .
+    container_name: academia-dl-debug
+    volumes:
+      - /volume1/docker/academia-dl/downloads:/downloads:rw
+    working_dir: /app
+    stdin_open: true
+    tty: true
+    entrypoint: ["/bin/sh"]
+    profiles:
+      - debug
+
+  # Service pour utilisation directe
+  academia-dl-direct:
+    build: .
+    container_name: academia-dl-direct
+    volumes:
+      - /volume1/docker/academia-dl/downloads:/downloads:rw
+    working_dir: /downloads
+    entrypoint: ["ruby", "/app/academia-dl.rb"]
+    profiles:
+      - direct

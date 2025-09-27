@@ -1,0 +1,9 @@
+# --- Synology & Docker ---
+@eaDir/
+.DS_Store
+.env
+docker-data/
+data/
+logs/
+*.log
+# -------------------------

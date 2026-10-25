@@ -7,3 +7,6 @@ data/
 logs/
 *.log
 # -------------------------
+
+# Contenus téléchargés (articles de tiers) : jamais versionnés dans un dépôt public
+downloads/
